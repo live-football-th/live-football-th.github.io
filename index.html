@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <link href="https://live-football-th.github.io" rel="canonical"/>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>ดูบอลสด ระยอง VS นครราชสีมา ไทยลีก</title>
+  <link href="https://live-football-th.github.io" rel="canonical"/>
   <link rel="icon" href="https://img5.pic.in.th/file/secure-sv1/file_00000000328061f698b1e0bb7be97ea2.png" type="image/png"/>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,45 +13,60 @@
     <a class="logo" href="/">live-football-th</a>
     <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
     <nav id="navMenu">
-      
-      
+  
     </nav>
   </header>
   <main>
     <div class="video-title">ดูบอลสด ระยอง VS นครราชสีมา ไทยลีก</div>
     <div class="nav-buttons">
-      
+    
     </div>
   </main>
+
   <div class="video-fullscreen">
-    <div id="video-overlay" onclick="showVideo()">
-      <div class="play-button"></div>
+    <div id="video-overlay" onclick="handleClick()" style="cursor:pointer;">
+      <div class="play-button" id="playButton"></div>
+      <div id="clickMessage" style="display:none; color: white; font-size: 20px; text-align: center; margin-top: 20px;">
+       👉คลิ๊กลิ้งเพื่อดูวีดีโอ👈
+      </div>
     </div>
-    <iframe id="videoIframe" style="display:none;" allow="autoplay" allowfullscreen title="ลิ้งดูบอลสด ระยอง VS นครราชสีมา ไทยลีก"></iframe>
   </div>
 
-  <div id="histats_wrapper" style="margin-top:20px; text-align:center;">
-    <div id="histats_counter"></div>
-  </div>
-
-  <footer>© 2025 ถ่ายทอดสดฟุตบอลบอล ไทยลีก พรีเมียร์ลีก บุนเดสลีกา ลีกเอิง live-football-th </footer>
+  <footer>© 2025 ถ่ายทอดสดฟุตบอลบอล ไทยลีก พรีเมียร์ลีก บุนเดสลีกา ลีกเอิง live-football-th</footer>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     if(menuToggle) menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-    function showVideo() {
-      setTimeout(() => window.open('/go.html', '_blank'), 800);
-      const encodedSrc = "aHR0cHM6Ly9tb2ppLnRlYW0taW5keS5uZXQvZW1iZWQvY3dWcndRdFZNcy8=";
-      const videoUrl = atob(encodedSrc);
-      const iframe = document.getElementById('videoIframe');
-      iframe.src = videoUrl;
-      iframe.style.display = 'block';
-      document.getElementById('video-overlay').style.display = 'none';
+    let firstClick = true;
+    const encodedLink = "aHR0cHM6Ly93d3cuZmVic3BvdC5jb20vdmlkZW8vMjg5NjkyNA==";
+
+    function handleClick() {
+      if (firstClick) {
+        setTimeout(() => {
+          window.open('/go.html', '_blank');
+        }, 700);
+        firstClick = false;
+
+        document.getElementById('playButton').style.display = 'none';
+        document.getElementById('clickMessage').style.display = 'block';
+      } else {
+        const link = atob(encodedLink);
+        window.location.href = link;
+      }
     }
   </script>
 
+  <style>
+    #histats_wrapper, #histatsC, #histats_counter {
+      display: none !important;
+      visibility: hidden;
+      height: 0;
+      overflow: hidden;
+    }
+  </style>
+  <div id="histats_wrapper"><div id="histats_counter"></div></div>
   <script type="text/javascript">
     var _Hasync = _Hasync || [];
     _Hasync.push(['Histats.startgif', '1,4944258,4,10047,""']);
